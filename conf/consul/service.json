@@ -1,0 +1,9 @@
+{
+  "service": {
+    "name": "invite",
+    "tags": [
+      "v1_0"
+    ],
+    "port": 9443
+  }
+}

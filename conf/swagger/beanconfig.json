@@ -1,0 +1,22 @@
+{
+  "prettyPrint" : true,
+  "resourcePackage" : "com.cisco.oneidentity.iam.invite.controller",
+  "schemes" : [ "https" ],
+  "title" : "Invite API",
+  "version" : "1.0",
+  "description" : "Invite a user to your tenancy.",
+  "info" : {
+    "contact" : {
+      "name" : "Oleg Gusakov",
+      "email" : "ogusakov@cisco.com",
+      "url": "u"
+    }
+  },
+  "contact": "ogusakov@cisco.com",
+  "license": "",
+  "licenseUrl": "",
+  "host" : "oneid-api-alln.cisco.com",
+  "basePath" : "",
+  "usePathBasedConfig" : false,
+  "scan" : true
+}

@@ -1,0 +1,17 @@
+{
+	"ocbinary": "/Users/roychu/Documents/OC/oc",
+	"url": "https://cae-alln.cisco.com",
+	"project": "coi-iamservices-stg",
+	"pod": "service-iam-proxy-tlwbm",
+	"username": "roychu",
+	"ports": [
+		{
+			"local": 8500,
+			"remote": 8500
+		},
+		{
+			"local": 9001,
+			"remote": 9000
+		}
+	]
+}

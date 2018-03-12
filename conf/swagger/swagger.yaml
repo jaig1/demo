@@ -1,0 +1,115 @@
+---
+swagger: "2.0"
+info:
+  description: "Invite a user to your tenancy."
+  version: "1.0"
+  title: "Invite API"
+  contact:
+    name: "ogusakov@cisco.com"
+  license:
+    name: ""
+    url: ""
+host: "oneid-api-alln.cisco.com"
+tags:
+- name: "Invite"
+schemes:
+- "https"
+paths:
+  /tenants/{tenant}/v1/invite/generate:
+    post:
+      tags:
+      - "Invite"
+      summary: "Generate an invitation link for a user to the given tenancy denoted\
+        \ by the tenant alias {tenant}."
+      description: ""
+      operationId: "invite"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "request"
+        description: "JSON which contains the email of the user you are inviting"
+        required: true
+        schema:
+          $ref: "#/definitions/InviteRequest"
+      - name: "tenant"
+        in: "path"
+        description: "Tenancy to which you want to invite the user to."
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Success."
+          schema:
+            $ref: "#/definitions/InviteResponse"
+        400:
+          description: "Error occured - due to business logic."
+          schema:
+            $ref: "#/definitions/Service_Error"
+        500:
+          description: "Internal error occured - due to a bug."
+          schema:
+            $ref: "#/definitions/Service_Error"
+      security:
+      - inviteoauth:
+        - "/invite.generate"
+definitions:
+  Mono:
+    type: "object"
+  MonoResponseEntityGeneric_Response:
+    type: "object"
+  InviteResponse:
+    type: "object"
+    required:
+    - "requestId"
+    - "response"
+    properties:
+      requestId:
+        type: "string"
+        description: "UUID which represents a unique request id."
+      result:
+        type: "string"
+        enum:
+        - "SUCCESS"
+        - "FAIL"
+      response:
+        description: "Response object"
+        $ref: "#/definitions/InviteResponseJSON"
+    description: "Returns the result from the API"
+  InviteResponseJSON:
+    type: "object"
+    required:
+    - "link"
+    properties:
+      link:
+        type: "string"
+        description: "Link to be provided to the user"
+  Service_Error:
+    type: "object"
+    required:
+    - "errorCode"
+    properties:
+      errorCode:
+        type: "string"
+        description: "Error code dependent on the service"
+        enum:
+        - "INTERNAL_ERROR"
+        - "IN_EXPORT_HOLD"
+        - "INVALID_DOMAIN"
+        - "MANUAL_PROVISION_REQUIRED"
+      errorVerbose:
+        type: "string"
+        description: "Human readable error description"
+    description: "Returns a service error"
+  InviteRequest:
+    type: "object"
+    required:
+    - "email"
+    properties:
+      email:
+        type: "string"
+        description: "Email of user that you wish to invite."
+    description: "Contains email of the user whom you wish to invite"
+

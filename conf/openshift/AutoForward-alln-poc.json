@@ -1,0 +1,17 @@
+{
+	"ocbinary": "C:/Users/ogusakov/Downloads/oc-3.5.5.5-windows/oc.exe",
+	"url": "https://cae-alln.cisco.com",
+	"project": "coi-iamservices-poc",
+	"pod": "service-iam-proxy-dbari",
+	"username": "ogusakov",
+	"ports": [
+		{
+			"local": 8500,
+			"remote": 8500
+		},
+		{
+			"local": 9001,
+			"remote": 9000
+		}
+	]
+}
