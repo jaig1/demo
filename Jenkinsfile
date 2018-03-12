@@ -44,8 +44,6 @@ try {
         stage 'Checkout'
               jStage = "Checkout"
               coiUtils.checkoutSource(jStage)
-              repo_url=coiUtils.getRepoUrl()
-              //coiUtils.replaceVersion()
         stage 'Static Scan'
               jStage = "Static Scan"
               coiUtils.staticScanner(jStage)
@@ -65,7 +63,8 @@ try {
         stage 'Deploy To CAE POC'
               jStage = "Deploy to POC"
               environment = "poc"
-              coiDeploy.runDeploy(["alln"] as String[], environment, jStage)
+      coiDeploy.runDeploy(["alln"] as String[], environment, jStage)
+    }
               
 }catch(Exception e) {
         currentBuild.result = 'FAILURE'
