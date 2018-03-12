@@ -1,8 +1,9 @@
-package com.jaig1.reactive;
+package com.cisco.oneidentity.iam.reactivems;
 
-import com.jaig1.reactive.dao.OfficerRepository;
-import com.jaig1.reactive.entities.Officer;
-import com.jaig1.reactive.entities.Rank;
+import com.cisco.oneidentity.iam.reactivems.dao.OfficerRepository;
+import com.cisco.oneidentity.iam.reactivems.entities.Officer;
+import com.cisco.oneidentity.iam.reactivems.entities.Rank;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.data.mongodb.core.CollectionOptions;
 import org.springframework.data.mongodb.core.MongoOperations;

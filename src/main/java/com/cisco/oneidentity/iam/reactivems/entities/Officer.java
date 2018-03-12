@@ -1,4 +1,4 @@
-package com.jaig1.reactive.entities;
+package com.cisco.oneidentity.iam.reactivems.entities;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;

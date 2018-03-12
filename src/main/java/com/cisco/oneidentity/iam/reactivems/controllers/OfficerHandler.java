@@ -1,7 +1,8 @@
-package com.jaig1.reactive.controllers;
+package com.cisco.oneidentity.iam.reactivems.controllers;
 
-import com.jaig1.reactive.dao.OfficerRepository;
-import com.jaig1.reactive.entities.Officer;
+import com.cisco.oneidentity.iam.reactivems.dao.OfficerRepository;
+import com.cisco.oneidentity.iam.reactivems.entities.Officer;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.server.ServerRequest;
