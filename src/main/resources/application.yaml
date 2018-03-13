@@ -1,0 +1,15 @@
+spring:
+ mvc:
+  view.prefix: /WEB-INF/jsp/
+  view.suffix: .jsp
+ aop:
+   auto: true
+   
+---
+
+server:
+ port: 9443
+ ssl:
+  enabled: true
+  key-store: changeme
+  key-store-password: changeme
