@@ -1,75 +1,76 @@
+---
+# Replication controller section
 apiVersion: v1
-kind: DeploymentConfig
+kind: ReplicationController
 metadata:
-  annotations:
-    openshift.io/generated-by: OpenShiftNewApp
-  labels:
-    app: reactivems
-    name: reactivems
-  namespace: coi-iamservices-poc
+  name: reactive-spring-sample
+
 spec:
   replicas: 1
-  selector:
-    app: reactivems
-    deploymentconfig: reactivems
-  strategy:
-    activeDeadlineSeconds: 21600
-    resources: {}
-    rollingParams:
-      intervalSeconds: 1
-      maxSurge: 25%
-      maxUnavailable: 25%
-      timeoutSeconds: 600
-      updatePeriodSeconds: 1
-    type: Rolling
   template:
     metadata:
-      annotations:
-        openshift.io/generated-by: OpenShiftNewApp
       labels:
-        app: reactivems
-        deploymentconfig: reactivems
+        app: reactive-spring-sample
+      annotations:
+        coi/policy: iam-search
+        pod.beta.kubernetes.io/init-containers: '[
+          {
+            "name": "vault-init",
+            "image": "containers.cisco.com/oneidentity/vault-init:v1.0",
+            "imagePullPolicy": "Always",
+            "volumeMounts": [
+              {
+                "name": "vault-token",
+                "mountPath": "/var/run/secrets/coi"
+              }
+            ]
+          }
+        ]'
     spec:
       containers:
-        - env:
-            - name: SPRING_DATA_MONGODB_HOST
-              value: 173.36.77.64
-            - name: SPRING_DATA_MONGODB_PORT
-              value: '32252'
-          image: containers.cisco.com/jnatanas/poc:reactivespringv1
-          imagePullPolicy: IfNotPresent
-          name: reactivems
+        - name: reactive-spring-sample
+          image: containers.cisco.com/oneidentity/reactive-spring-sample:master-1
+          imagePullPolicy: Always
+          env:
+            - name: VAULT_SERVICE_NAME
+              value: "iam-search"
           ports:
-            - containerPort: 8080
+            - containerPort: 9443
               protocol: TCP
-          resources: {}
-          terminationMessagePath: /dev/termination-log
-          terminationMessagePolicy: File
+              name: search
           volumeMounts:
-            - mountPath: /tmp
-              name: reactivems-volume-1
-      dnsPolicy: ClusterFirst
-      restartPolicy: Always
-      schedulerName: default-scheduler
-      securityContext: {}
-      terminationGracePeriodSeconds: 30
+            - name: vault-token
+              mountPath: "/var/run/secrets/coi"
+          resources:
+              limits:
+                cpu: '6'
+                memory: 4Gi
+              requests:
+                cpu: '4'
+                memory: 2Gi
       volumes:
-        - emptyDir: {}
-          name: reactivems-volume-1
-  test: false
+        - name: vault-token
+          emptyDir: {}
+---
+# Service section
+apiVersion: v1
 kind: Service
 metadata:
+  name: reactive-spring-sample
   labels:
-    app: reactivems
-  name: reactivems-ingress
-  namespace: coi-iamservices-poc
+    name: reactive-spring-sample
 spec:
   ports:
-      port: 8080
-      protocol: TCP
-      targetPort: 8080
-  selector:
-    app: reactivems
-    deploymentconfig: reactivems
-  sessionAffinity: None
+    # the port that this service should serve on
+       - name: http
+         protocol: TCP
+         port: 9443
+         targetPort: 9443
+       - name: toute
+         prtocol: TCP
+         port: 8080
+         targetPort: 9443
   type: LoadBalancer
+  # label kys and values that must match in order to receive traffic for this service
+  selector:
+     name: service-iam-search
