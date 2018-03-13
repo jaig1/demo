@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.cisco.oneidentity.iam</groupId>
-	<artifactId>reactivems</artifactId>
+	<artifactId>reactive-spring-sample</artifactId>
 	<version>1.0.0</version>
 	<packaging>jar</packaging>
 
