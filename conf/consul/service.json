@@ -1,6 +1,6 @@
 {
   "service": {
-    "name": "invite",
+    "name": "search",
     "tags": [
       "v1_0"
     ],

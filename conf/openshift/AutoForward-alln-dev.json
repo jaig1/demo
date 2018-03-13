@@ -1,9 +1,9 @@
 {
-	"ocbinary": "C:/Users/roychu/Documents/OC/oc",
+	"ocbinary": "/Users/roychu/Documents/OC/oc",
 	"url": "https://cae-alln.cisco.com",
 	"project": "coi-iamservices-dev",
-	"pod": "service-iam-proxy-lfop5",
-	"username": "ogusakov",
+	"pod": "service-iam-proxy-kpfg3",
+	"username": "roychu",
 	"ports": [
 		{
 			"local": 8500,

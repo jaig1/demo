@@ -1,12 +1,12 @@
 ---
 # Replication controller section
 apiVersion: v1
-kind: ReplicationController
+kind: DeploymentConfig
 metadata:
   name: reactive-spring-sample
 
 spec:
-  replicas: 1
+  replicas: 2
   template:
     metadata:
       labels:
@@ -29,7 +29,7 @@ spec:
     spec:
       containers:
         - name: reactive-spring-sample
-          image: containers.cisco.com/oneidentity/reactive-spring-sample:master-1
+          image: containers.cisco.com/oneidentity/reactive-spring-sample:develop-10
           imagePullPolicy: Always
           env:
             - name: VAULT_SERVICE_NAME
@@ -43,34 +43,11 @@ spec:
               mountPath: "/var/run/secrets/coi"
           resources:
               limits:
-                cpu: '6'
+                cpu: '2'
                 memory: 4Gi
               requests:
-                cpu: '4'
+                cpu: 200m
                 memory: 2Gi
       volumes:
         - name: vault-token
           emptyDir: {}
----
-# Service section
-apiVersion: v1
-kind: Service
-metadata:
-  name: reactive-spring-sample
-  labels:
-    name: reactive-spring-sample
-spec:
-  ports:
-    # the port that this service should serve on
-       - name: http
-         protocol: TCP
-         port: 9443
-         targetPort: 9443
-       - name: toute
-         prtocol: TCP
-         port: 8080
-         targetPort: 9443
-  type: LoadBalancer
-  # label kys and values that must match in order to receive traffic for this service
-  selector:
-     name: service-iam-search

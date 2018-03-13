@@ -1,21 +1,21 @@
 {
   "prettyPrint" : true,
-  "resourcePackage" : "com.cisco.oneidentity.iam.invite.controller",
+  "resourcePackage" : "com.cisco.oneidentity.iam.search.controller",
   "schemes" : [ "https" ],
-  "title" : "Invite API",
+  "title" : "Search API",
   "version" : "1.0",
-  "description" : "Invite a user to your tenancy.",
+  "description" : "Search for users and tenants with LDAP",
   "info" : {
     "contact" : {
-      "name" : "Oleg Gusakov",
-      "email" : "ogusakov@cisco.com",
+      "name" : "Roy Chu",
+      "email" : "roychu@cisco.com",
       "url": "u"
     }
   },
-  "contact": "ogusakov@cisco.com",
+  "contact": "roychu@cisco.com",
   "license": "",
   "licenseUrl": "",
-  "host" : "oneid-api-alln.cisco.com",
+  "host" : "identity.cisco.com",
   "basePath" : "",
   "usePathBasedConfig" : false,
   "scan" : true

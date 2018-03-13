@@ -1,2 +1,2 @@
-consul:  
-  rootConfig: services/iaminvite/
+consul:
+  rootConfig: services/iamsearch/
