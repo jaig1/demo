@@ -6,7 +6,7 @@ metadata:
   name: reactive-spring-sample
 
 spec:
-  replicas: 2
+  replicas: 1
   template:
     metadata:
       labels:
