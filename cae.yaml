@@ -33,7 +33,11 @@ spec:
           imagePullPolicy: Always
           env:
             - name: VAULT_SERVICE_NAME
-              value: "iam-search"
+              value: "reactive-spring-sample"
+            - name: SPRING_DATA_MONGODB_HOST
+              value: "173.36.77.64"
+            - name: SPRING_DATA_MONGODB_PORT
+              value: "32252"
           ports:
             - containerPort: 9443
               protocol: TCP
@@ -51,3 +55,25 @@ spec:
       volumes:
         - name: vault-token
           emptyDir: {}
+# Service section
+apiVersion: v1
+kind: Service
+metadata:
+  name: reactive-spring-sample
+  labels:
+    name: reactive-spring-sample
+spec:
+  ports:
+    # the port that this service should serve on
+       - name: http
+         protocol: TCP
+         port: 9443
+         targetPort: 9443
+       - name: toute
+         prtocol: TCP
+         port: 8080
+         targetPort: 9443
+  type: LoadBalancer
+  # label kys and values that must match in order to receive traffic for this service
+  selector:
+     name: reactive-spring-sample
