@@ -76,4 +76,8 @@ spec:
   type: LoadBalancer
   # label kys and values that must match in order to receive traffic for this service
   selector:
+<<<<<<< HEAD
      name: reactive-spring-sample
+=======
+     name: reactive-spring-sample
+>>>>>>> b70d1f8303e7b017db8251b3cccda1199654f919
