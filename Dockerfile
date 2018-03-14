@@ -16,9 +16,9 @@ WORKDIR /app
 #ADD http://engci-maven.cisco.com/artifactory/oneidentityhub-group/com/cisco/oneidentity/iam/${APP_NAME}/${APP_VERSION}-${APP_BRANCH}/${APP_NAME_VERSION}.jar boot.jar
 ADD http://engci-maven.cisco.com/artifactory/oneidentityhub-group/com/cisco/oneidentity/iam/${APP_NAME}/${APP_VERSION}/${APP_NAME_VERSION}.jar boot.jar
 
-ADD ${APP_NAME}/conf conf
+ADD /conf conf
 
-ADD ${APP_NAME}/src/main/resources/application.yaml /app/
+ADD /src/main/resources/application.yaml /app/
 
 RUN chmod a+x /app/boot.jar && \
     chmod a+rw /app/boot.jar
@@ -27,15 +27,15 @@ RUN chmod a+x /app/application.yaml
 
 RUN chgrp -R 0 /app/ && chmod -R g+rwX /app/
 
-ADD ${APP_NAME}/conf/bin/container-limits.sh /app/
-ADD ${APP_NAME}/conf/bin/start.sh /app/
+ADD /conf/bin/container-limits.sh /app/
+ADD /conf/bin/start.sh /app/
 
 RUN chmod a+x /app/container-limits.sh
 RUN chmod a+x /app/start.sh && chmod a+rwx /app
 
-ADD ${APP_NAME}/conf/supervisor/* /etc/supervisor/conf.d/
+ADD /conf/supervisor/* /etc/supervisor/conf.d/
 
-ADD ${APP_NAME}/conf/consul/* /etc/consul/
+ADD /conf/consul/* /etc/consul/
 
 EXPOSE 9443
 
