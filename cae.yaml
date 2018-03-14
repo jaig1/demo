@@ -70,11 +70,11 @@ spec:
          protocol: TCP
          port: 9443
          targetPort: 9443
-       - name: toute
+       - name: route
          prtocol: TCP
          port: 8080
          targetPort: 9443
   type: LoadBalancer
   # label kys and values that must match in order to receive traffic for this service
   selector:
-     name: reactive-spring-sample
+     app: reactive-spring-sample
