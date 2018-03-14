@@ -33,7 +33,7 @@ spec:
           imagePullPolicy: Always
           env:
             - name: VAULT_SERVICE_NAME
-              value: "service-iam-search"
+              value: "iam-search"
             - name: SPRING_DATA_MONGODB_HOST
               value: "173.36.77.64"
             - name: SPRING_DATA_MONGODB_PORT
