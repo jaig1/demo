@@ -8,8 +8,8 @@ spring:
 ---
 
 server:
- port: 9440
+ port: 9443
  ssl:
   enabled: true
-  key-store: C:\Users\jnatanas\keystore.jks
-  key-store-password: password
+  key-store: changeme
+  key-store-password: changeme
