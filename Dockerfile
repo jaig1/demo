@@ -5,7 +5,7 @@ RUN yum -y install openssl
 
 # Define application names
 ENV APP_NAME=reactive-spring-sample
-ENV APP_VERSION=1.1.12
+ENV APP_VERSION=1.1.13
 #ENV APP_BRANCH=SNAPSHOT
 
 #ENV APP_NAME_VERSION=${APP_NAME}-${APP_VERSION}-${APP_BRANCH}
